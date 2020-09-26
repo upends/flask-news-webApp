@@ -1,0 +1,38 @@
+{% extends "index.html"%}
+{% block content %}
+<div class="form-container">
+<div class="input-category">
+    
+    <form action="{{url_for('.category')}}" method="POST">
+        <label for="news-category">Select Category</label>
+        <select id="news-category" name="news-category">
+            <option value="Technology">Technology</option>
+            <option value="Business">Business</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="General">General</option>
+            <option value="Health">Health</option>
+            <option value="Science">Science</option>
+            <option value="Sports">Sports</option>
+          </select>
+          <input type="submit" value="Submit">
+    </form>
+    <h3 class="selected-category">{{category}}</h3>
+    </div>
+</div>
+<div class="main-container">
+    
+    
+    {% for data in result %}
+    <div class="news-container" id="news">
+
+        <div class="headding-container">
+            <h3 class="news-title">{{data['title']}}</h3>
+        </div>
+        <img class="news-image" src="{{data['urlToImage']}}" alt="">
+        <div class="content-container"><p class="news-content">{{data['content']}}</p></div>
+        <div class="link-container"><a href="{{data['url']}}" target="_blank">See More</a></div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

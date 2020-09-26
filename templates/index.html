@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <title>News App</title>
+</head>
+
+
+<body>
+
+    <!-- start head section -->
+    <div class="head-container">
+        <div class="headding">
+            <ul class="head-item">
+                <li class="item"><a href="{{ url_for('.topHeadline') }}">Top Headlines</a></li>
+                <li class="item"><a href="{{  url_for('.category')  }}">Category</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- end head section -->
+    {% block content %}
+    <div class="main-container">
+        {% for data in result %}
+        <div class="news-container" id="news">
+
+            <div class="headding-container">
+                <h3 class="news-title">{{data['title']}}</h3>
+            </div>
+            <img class="news-image" src="{{data['urlToImage']}}" alt="">
+            <div class="content-container"><p class="news-content">{{data['content']}}</p></div>
+            <div class="link-container"><a href="{{data['url']}}" target="_blank">See More</a></div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- end content -->
+    {% endblock %}
+   
+</body>
+</html>
